@@ -1,19 +1,20 @@
 package dh.backend.clinica.controller;
 
-import dh.backend.clinica.model.Paciente;
-import dh.backend.clinica.service.PacienteService;
+import dh.backend.clinica.entity.Paciente;
+import dh.backend.clinica.service.IPacienteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/paciente")
 public class PacienteController {
-    private PacienteService pacienteService;
+    private IPacienteService pacienteService;
 
-    public PacienteController(PacienteService pacienteService) {
+    public PacienteController(IPacienteService pacienteService) {
         this.pacienteService = pacienteService;
     }
 
@@ -26,8 +27,8 @@ public class PacienteController {
     //PUT
     @PutMapping("/modificar")
     public ResponseEntity<String>  modificarPaciente(@RequestBody Paciente paciente){
-        Paciente pacienteEncontrado = pacienteService.buscarPorId(paciente.getId());
-        if(pacienteEncontrado!= null){
+        Optional<Paciente> pacienteEncontrado = pacienteService.buscarPorId(paciente.getId());
+        if(pacienteEncontrado.isPresent()){
             pacienteService.modificarPaciente(paciente);
             String jsonResponse = "{\"mensaje\": \"El paciente fue modificado\"}";
             return ResponseEntity.ok(jsonResponse);
@@ -39,8 +40,8 @@ public class PacienteController {
     //DELETE
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<String> eliminarPaciente(@PathVariable Integer id){
-        Paciente pacienteEncontrado = pacienteService.buscarPorId(id);
-        if(pacienteEncontrado!= null) {
+        Optional<Paciente>  pacienteEncontrado = pacienteService.buscarPorId(id);
+        if(pacienteEncontrado.isPresent()) {
             pacienteService.eliminarPaciente(id);
             String jsonResponse = "{\"mensaje\": \"El paciente fue eliminado\"}";
             return ResponseEntity.ok(jsonResponse);
@@ -52,9 +53,9 @@ public class PacienteController {
     //GET
     @GetMapping("/buscar/{id}")
     public ResponseEntity<Paciente>  buscarPorId(@PathVariable Integer id){
-        Paciente pacienteEncontrado = pacienteService.buscarPorId(id);
-        if(pacienteEncontrado!= null) {
-            return ResponseEntity.ok(pacienteEncontrado);
+        Optional<Paciente>  pacienteEncontrado = pacienteService.buscarPorId(id);
+        if(pacienteEncontrado.isPresent()) {
+            return ResponseEntity.ok(pacienteEncontrado.get());
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -65,4 +66,15 @@ public class PacienteController {
     public ResponseEntity<List<Paciente>>  buscarTodos(){
         return ResponseEntity.ok(pacienteService.buscarTodos());
     }
+
+    @GetMapping("/buscarApellidoNombre/{apellido}/{nombre}")
+    public ResponseEntity<List<Paciente>> buscarApellido(@PathVariable String apellido, @PathVariable String nombre){
+        return ResponseEntity.ok(pacienteService.buscarPorApellidoyNombre(apellido, nombre));
+    }
+
+    @GetMapping("/buscarApellido/{parte}")
+    public ResponseEntity<List<Paciente>> buscarParteApellido(@PathVariable String parte){
+        return ResponseEntity.ok(pacienteService.buscarPorUnaParteApellido(parte));
+    }
+
 }
