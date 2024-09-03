@@ -39,4 +39,10 @@ public class TurnoController {
         Optional<TurnoResponseDto> turno = turnoService.buscarTurnosPorPaciente(apellido);
         return ResponseEntity.ok(turno.get());
     }
+
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<String> eliminarTurno(@PathVariable Integer id){
+        turnoService.eliminarTurno(id);
+        return ResponseEntity.ok("{\"mensaje\": \"El turno fue eliminado\"}");
+    }
 }
