@@ -23,6 +23,19 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(apiError);
     }
 
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<ApiError> badRequest(BadRequestException e, HttpServletRequest request){
+        ApiError apiError = new ApiError(
+                request.getRequestURI(),
+                e.getMessage(),
+                HttpStatus.BAD_REQUEST.value(),
+                ZonedDateTime.now(),
+                List.of()
+        );
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiError);
+    }
+
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiError> manejoGeneral(Exception e, HttpServletRequest request){
         ApiError apiError = new ApiError(

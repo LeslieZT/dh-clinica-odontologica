@@ -8,6 +8,7 @@ import dh.backend.clinica.dto.response.TurnoResponseDto;
 import dh.backend.clinica.entity.Odontologo;
 import dh.backend.clinica.entity.Paciente;
 import dh.backend.clinica.entity.Turno;
+import dh.backend.clinica.exception.BadRequestException;
 import dh.backend.clinica.exception.ResourceNotFoundException;
 import dh.backend.clinica.repository.ITurnoRepository;
 import dh.backend.clinica.service.IOdontologoService;
@@ -41,10 +42,19 @@ public class TurnoService implements ITurnoService {
     public TurnoResponseDto guardarTurno(TurnoRequestDto turnoRequestDto){
         Optional<Paciente> paciente = pacienteService.buscarPorId(turnoRequestDto.getPaciente_id());
         Optional<Odontologo> odontologo = odontologoService.buscarPorId(turnoRequestDto.getOdontologo_id());
-        Turno turno = new Turno();
+         Turno turno = new Turno();
         Turno turnoDesdeBD = null;
         TurnoResponseDto turnoResponseDto = null;
-        if(paciente.isPresent() && odontologo.isPresent()){
+
+        if(paciente.isEmpty()){
+            throw new BadRequestException("Paciente no encontrado");
+        }
+
+        if(odontologo.isEmpty()){
+            throw new BadRequestException("Odontologo no encontrado");
+        }
+
+        // if(paciente.isPresent() && odontologo.isPresent()){
             // el armado del turno desde el turno request dto
             turno.setPaciente(paciente.get());
             turno.setOdontologo(odontologo.get());
@@ -58,7 +68,7 @@ public class TurnoService implements ITurnoService {
             // turnoResponseDto = obtenerTurnoResponse(turnoDesdeBD);
             // armado con modelmapper
             turnoResponseDto = convertirTurnoEnResponse(turnoDesdeBD);
-        }
+        // }
         return turnoResponseDto;
     }
 

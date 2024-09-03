@@ -21,7 +21,7 @@ public class TurnoController {
 
     @PostMapping("/guardar")
     public ResponseEntity<TurnoResponseDto> guardarTurno(@RequestBody TurnoRequestDto turnoRequestDto){
-        return ResponseEntity.ok(turnoService.guardarTurno(turnoRequestDto));
+       return ResponseEntity.ok(turnoService.guardarTurno(turnoRequestDto));
     }
 
     @GetMapping("/buscartodos")
