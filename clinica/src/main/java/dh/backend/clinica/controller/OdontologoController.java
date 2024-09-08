@@ -1,9 +1,11 @@
 package dh.backend.clinica.controller;
 
-import dh.backend.clinica.entity.Odontologo;
-
+import dh.backend.clinica.dto.request.odontologo.OdontologoCreateRequestDto;
+import dh.backend.clinica.dto.request.odontologo.OdontologoUpdateRequestDto;
+import dh.backend.clinica.dto.response.odontologo.OdontologoResponseDto;
 
 import dh.backend.clinica.service.IOdontologoService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/odontologo")
+@RequestMapping("/odontologos")
 public class OdontologoController {
     private IOdontologoService odontologoService;
 
@@ -20,56 +22,50 @@ public class OdontologoController {
         this.odontologoService = odontologoService;
     }
 
+
+    //GET
+    @GetMapping("/buscar/{id}")
+    public ResponseEntity<OdontologoResponseDto>  buscarPorId(@PathVariable Integer id){
+        Optional<OdontologoResponseDto> odontologo = odontologoService.findOne(id);
+        return ResponseEntity.ok(odontologo.get());
+    }
+
+    //GET
+    @GetMapping("/buscartodos")
+    public ResponseEntity<List<OdontologoResponseDto>>  buscarTodos(){
+        return ResponseEntity.ok(odontologoService.findAll());
+    }
+
     //POST
     @PostMapping("/guardar")
-    public ResponseEntity<Odontologo> guardarOdontologo(@RequestBody Odontologo odontologo){
-        return ResponseEntity.ok(odontologoService.guardarOdontologo(odontologo));
+    public ResponseEntity<OdontologoResponseDto> guardarOdontologo(@Valid @RequestBody OdontologoCreateRequestDto odontologoCreateRequestDto){
+        OdontologoResponseDto odontologoResponseDto = odontologoService.create(odontologoCreateRequestDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(odontologoResponseDto);
     }
 
     //PUT
     @PutMapping("/modificar")
-    public ResponseEntity<String>  modificarOdontologo(@RequestBody Odontologo odontologo){
-        Optional<Odontologo> odontologoEncontrado = odontologoService.buscarPorId(odontologo.getId());
-
-        if(odontologoEncontrado.isPresent()){
-            odontologoService.modificarOdontologo(odontologo);
-            String jsonResponse = "{\"mensaje\": \"El odontologo fue modificado\"}";
-            return ResponseEntity.ok(jsonResponse);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+    public ResponseEntity<String>  modificarOdontologo(@Valid @RequestBody OdontologoUpdateRequestDto odontologoUpdateRequestDto ){
+        odontologoService.update(odontologoUpdateRequestDto);
+        String jsonResponse = "{\"mensaje\": \"El odontologo fue modificado\"}";
+        return ResponseEntity.ok(jsonResponse);
     }
 
     //DELETE
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<String> eliminarOdontologo(@PathVariable Integer id){
-
-        Optional<Odontologo> odontologoEncontrado = odontologoService.buscarPorId(id);
-
-        if(odontologoEncontrado.isPresent()) {
-            odontologoService.eliminarOdontologo(id);
-            String jsonResponse = "{\"mensaje\": \"El odontologo fue eliminado\"}";
-            return ResponseEntity.ok(jsonResponse);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        odontologoService.delete(id);
+        String jsonResponse = "{\"mensaje\": \"El odontologo fue eliminado\"}";
+        return ResponseEntity.ok(jsonResponse);
     }
 
-    //GET
-    @GetMapping("/buscar/{id}")
-    public ResponseEntity<Odontologo>  buscarPorId(@PathVariable Integer id){
-        Optional<Odontologo> odontologoEncontrado = odontologoService.buscarPorId(id);
-
-        if(odontologoEncontrado.isPresent()) {
-            return ResponseEntity.ok(odontologoEncontrado.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @GetMapping("/buscarNumeroMatricula/{numeroMatricula}")
+    public ResponseEntity<List<OdontologoResponseDto>> buscarPorNumeroMatricula(@PathVariable String numeroMatricula){
+        return ResponseEntity.ok(odontologoService.searchByRegistrationNumber(numeroMatricula));
     }
 
-    //GET
-    @GetMapping("/buscartodos")
-    public ResponseEntity<List<Odontologo>>  buscarTodos(){
-        return ResponseEntity.ok(odontologoService.buscarTodos());
+    @GetMapping("/buscarNombre/{parte}")
+    public ResponseEntity<List<OdontologoResponseDto>> buscarParteNombre(@PathVariable String parte){
+        return ResponseEntity.ok(odontologoService.searchByName(parte));
     }
 }

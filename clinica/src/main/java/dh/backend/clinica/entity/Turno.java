@@ -30,8 +30,9 @@ public class Turno {
     private Odontologo odontologo;
     private LocalDate fecha;
 
+    /*
     @Override
     public String toString() {
         return GsonProvider.getGson().toJson(this);
-    }
+    }*/
 }

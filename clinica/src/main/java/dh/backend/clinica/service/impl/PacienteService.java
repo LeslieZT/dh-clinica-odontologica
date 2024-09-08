@@ -1,6 +1,7 @@
 package dh.backend.clinica.service.impl;
 
 
+import dh.backend.clinica.entity.Odontologo;
 import dh.backend.clinica.entity.Paciente;
 import dh.backend.clinica.exception.ResourceNotFoundException;
 import dh.backend.clinica.repository.IPacienteRepository;
@@ -59,5 +60,12 @@ public class PacienteService implements IPacienteService {
         return pacienteRepository.buscarPorParteApellido(parte);
     }
 
-
+    @Override
+    public Optional<Paciente> getPacienteById (Integer id) {
+        Optional<Paciente> paciente = pacienteRepository.findById(id);
+        if(paciente.isEmpty()) {
+            throw new ResourceNotFoundException("Paciente no encontrado");
+        }
+        return paciente;
+    }
 }

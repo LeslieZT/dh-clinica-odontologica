@@ -1,4 +1,4 @@
-package dh.backend.clinica.dto.response;
+package dh.backend.clinica.dto.response.odontologo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class OdontologoResponseDto {
     private Integer id;
-    private String matricula;
-    private String apellido;
+    private String numeroMatricula;
     private String nombre;
+    private String apellido;
 }

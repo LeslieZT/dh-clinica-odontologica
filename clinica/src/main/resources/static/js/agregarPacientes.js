@@ -26,7 +26,7 @@ form.addEventListener("submit", function (event) {
     },
   };
 
-  fetch(`paciente/guardar`, {
+  fetch(`pacientes/guardar`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
