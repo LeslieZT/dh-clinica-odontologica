@@ -10,17 +10,21 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IOdontologoService {
-    OdontologoResponseDto create (OdontologoCreateRequestDto dontologoCreateRequestDto);
-    Optional<OdontologoResponseDto> findOne(Integer id);
-    List<OdontologoResponseDto> findAll();
-    void update (OdontologoUpdateRequestDto odontologoUpdateRequestDto);
-    void delete(Integer id);
+    OdontologoResponseDto guardarOdontologo (OdontologoCreateRequestDto dontologoCreateRequestDto);
 
-    List<OdontologoResponseDto> searchByRegistrationNumber(String numeroMatricula);
+    Optional<OdontologoResponseDto> buscarPorId(Integer id);
 
-    List<OdontologoResponseDto> searchByName(String parteNombre);
+    List<OdontologoResponseDto> buscarTodos();
 
-    Optional<Odontologo> getOdontologoById(Integer id);
+    void modificarOdontologo (OdontologoUpdateRequestDto odontologoUpdateRequestDto);
+
+    void eliminarOdontologo(Integer id);
+
+    List<OdontologoResponseDto> buscarPorNumeroMatricula(String numeroMatricula);
+
+    List<OdontologoResponseDto> buscarPorNombre(String parteNombre);
+
+    Optional<Odontologo> obtenerOdontologo(Integer id);
 
     OdontologoResponseDto convertirOdontologoEnResponse(Odontologo odontologo);
 

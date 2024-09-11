@@ -16,7 +16,8 @@ public interface IPacienteService {
     void eliminarPaciente(Integer id);
 
     List<Paciente> buscarPorApellidoyNombre(String apellido, String nombre);
+
     List<Paciente> buscarPorUnaParteApellido(String parte);
 
-    Optional<Paciente> getPacienteById(Integer id);
+    Optional<Paciente> obtenerPaciente(Integer id);
 }

@@ -61,7 +61,7 @@ public class PacienteService implements IPacienteService {
     }
 
     @Override
-    public Optional<Paciente> getPacienteById (Integer id) {
+    public Optional<Paciente> obtenerPaciente (Integer id) {
         Optional<Paciente> paciente = pacienteRepository.findById(id);
         if(paciente.isEmpty()) {
             throw new ResourceNotFoundException("Paciente no encontrado");

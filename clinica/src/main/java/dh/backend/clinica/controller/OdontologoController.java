@@ -26,27 +26,27 @@ public class OdontologoController {
     //GET
     @GetMapping("/buscar/{id}")
     public ResponseEntity<OdontologoResponseDto>  buscarPorId(@PathVariable Integer id){
-        Optional<OdontologoResponseDto> odontologo = odontologoService.findOne(id);
+        Optional<OdontologoResponseDto> odontologo = odontologoService.buscarPorId(id);
         return ResponseEntity.ok(odontologo.get());
     }
 
     //GET
     @GetMapping("/buscartodos")
     public ResponseEntity<List<OdontologoResponseDto>>  buscarTodos(){
-        return ResponseEntity.ok(odontologoService.findAll());
+        return ResponseEntity.ok(odontologoService.buscarTodos());
     }
 
     //POST
     @PostMapping("/guardar")
     public ResponseEntity<OdontologoResponseDto> guardarOdontologo(@Valid @RequestBody OdontologoCreateRequestDto odontologoCreateRequestDto){
-        OdontologoResponseDto odontologoResponseDto = odontologoService.create(odontologoCreateRequestDto);
+        OdontologoResponseDto odontologoResponseDto = odontologoService.guardarOdontologo(odontologoCreateRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(odontologoResponseDto);
     }
 
     //PUT
     @PutMapping("/modificar")
     public ResponseEntity<String>  modificarOdontologo(@Valid @RequestBody OdontologoUpdateRequestDto odontologoUpdateRequestDto ){
-        odontologoService.update(odontologoUpdateRequestDto);
+        odontologoService.modificarOdontologo(odontologoUpdateRequestDto);
         String jsonResponse = "{\"mensaje\": \"El odontologo fue modificado\"}";
         return ResponseEntity.ok(jsonResponse);
     }
@@ -54,18 +54,18 @@ public class OdontologoController {
     //DELETE
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<String> eliminarOdontologo(@PathVariable Integer id){
-        odontologoService.delete(id);
+        odontologoService.eliminarOdontologo(id);
         String jsonResponse = "{\"mensaje\": \"El odontologo fue eliminado\"}";
         return ResponseEntity.ok(jsonResponse);
     }
 
     @GetMapping("/buscarNumeroMatricula/{numeroMatricula}")
     public ResponseEntity<List<OdontologoResponseDto>> buscarPorNumeroMatricula(@PathVariable String numeroMatricula){
-        return ResponseEntity.ok(odontologoService.searchByRegistrationNumber(numeroMatricula));
+        return ResponseEntity.ok(odontologoService.buscarPorNumeroMatricula(numeroMatricula));
     }
 
     @GetMapping("/buscarNombre/{parte}")
     public ResponseEntity<List<OdontologoResponseDto>> buscarParteNombre(@PathVariable String parte){
-        return ResponseEntity.ok(odontologoService.searchByName(parte));
+        return ResponseEntity.ok(odontologoService.buscarPorNombre(parte));
     }
 }

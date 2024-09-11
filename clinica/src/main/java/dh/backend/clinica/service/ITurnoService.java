@@ -8,14 +8,15 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ITurnoService {
-    TurnoResponseDto create(TurnoRequestDto turnoRequestDto);
+    TurnoResponseDto guardarTurno(TurnoRequestDto turnoRequestDto);
 
-    Optional<TurnoResponseDto> findOne(Integer id);
+    Optional<TurnoResponseDto> buscarPorId(Integer id);
 
-    List<TurnoResponseDto> findAll();
+    List<TurnoResponseDto> buscarTodos();
 
-    void update(TurnoModifyDto turnoModifyDto);
+    void modificarTurno(TurnoModifyDto turnoModifyDto);
 
-    void delete(Integer id);
+    void eliminarTurno(Integer id);
+    
     Optional<TurnoResponseDto> buscarTurnosPorPaciente(String pacienteApellido);
 }

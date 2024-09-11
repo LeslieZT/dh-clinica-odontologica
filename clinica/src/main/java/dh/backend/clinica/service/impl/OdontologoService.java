@@ -50,30 +50,30 @@ public class OdontologoService implements IOdontologoService {
     }
 
     @Override
-    public Optional<OdontologoResponseDto> findOne(Integer id) {
+    public Optional<OdontologoResponseDto> buscarPorId(Integer id) {
         Optional<Odontologo> odontologo = odontologoRepository.findById(id);
         if(odontologo.isEmpty()) {
             throw new ResourceNotFoundException("Odontologo no encontrado");
-        }
-        logger.info("Odontologo Encontrado" + odontologo.get());
+        }      
         OdontologoResponseDto odontologoResponse = convertirOdontologoEnResponse(odontologo.get());
+          logger.info("Odontologo Encontrado" + odontologoResponse);
         return Optional.of(odontologoResponse);
     }
 
     @Override
-    public List<OdontologoResponseDto> findAll() {
+    public List<OdontologoResponseDto> buscarTodos() {
         List<Odontologo> odontologosDesdeBD = odontologoRepository.findAll() ;
         List<OdontologoResponseDto>  odontologosResponse = new ArrayList<>();
         for(Odontologo t: odontologosDesdeBD){
             OdontologoResponseDto odontologoResponseDto = convertirOdontologoEnResponse(t);
-            logger.info("odontologo"+ odontologoResponseDto);
+            logger.info("odontologo "+ odontologoResponseDto);
             odontologosResponse.add(odontologoResponseDto);
         }
         return odontologosResponse;
     }
 
     @Override
-    public OdontologoResponseDto create(OdontologoCreateRequestDto odontologoCreateRequestDto) {
+    public OdontologoResponseDto guardarOdontologo(OdontologoCreateRequestDto odontologoCreateRequestDto) {
         Odontologo odontologo = convertirEnOdontologo(odontologoCreateRequestDto);
         Odontologo newOdontologo = odontologoRepository.save(odontologo);
         OdontologoResponseDto odontologoResponse =  convertirOdontologoEnResponse(newOdontologo);
@@ -81,18 +81,18 @@ public class OdontologoService implements IOdontologoService {
     }
 
     @Override
-    public void update(OdontologoUpdateRequestDto odontologoUpdateRequestDto ) {
+    public void modificarOdontologo(OdontologoUpdateRequestDto odontologoUpdateRequestDto ) {
         Optional<Odontologo> odontologo = odontologoRepository.findById(odontologoUpdateRequestDto.getId());
         if(odontologo.isEmpty()) {
             throw new ResourceNotFoundException("Odontologo no encontrado");
-        }
-        logger.info("Odontologo Encontrado" + odontologo.get());
+        }    
         Odontologo odontologoUpdate = convertirEnOdontologo(odontologoUpdateRequestDto);
+            logger.info("Odontologo Update " + odontologoUpdate);
         odontologoRepository.save(odontologoUpdate);
     }
 
    @Override
-    public void delete(Integer id) {
+    public void eliminarOdontologo(Integer id) {
         Optional<Odontologo> odontologo = odontologoRepository.findById(id);
         if(odontologo.isEmpty()) {
             throw new ResourceNotFoundException("Odontologo no encontrado");
@@ -101,7 +101,7 @@ public class OdontologoService implements IOdontologoService {
     }
 
     @Override
-    public List<OdontologoResponseDto> searchByRegistrationNumber(String numeroMatricula) {
+    public List<OdontologoResponseDto> buscarPorNumeroMatricula(String numeroMatricula) {
         List<Odontologo> odontologosDesdeBD = odontologoRepository.findByNroMatricula(numeroMatricula) ;
         List<OdontologoResponseDto>  odontologosResponse = new ArrayList<>();
         for(Odontologo t: odontologosDesdeBD){
@@ -113,7 +113,7 @@ public class OdontologoService implements IOdontologoService {
     }
 
     @Override
-    public List<OdontologoResponseDto> searchByName(String parteNombre) {
+    public List<OdontologoResponseDto> buscarPorNombre(String parteNombre) {
         List<Odontologo> odontologosDesdeBD = odontologoRepository.buscarPorParteNombre(parteNombre) ;
         List<OdontologoResponseDto>  odontologosResponse = new ArrayList<>();
         for(Odontologo t: odontologosDesdeBD){
@@ -125,7 +125,7 @@ public class OdontologoService implements IOdontologoService {
     }
 
     @Override
-    public Optional<Odontologo> getOdontologoById (Integer id) {
+    public Optional<Odontologo> obtenerOdontologo (Integer id) {
         Optional<Odontologo> odontologo = odontologoRepository.findById(id);
         if(odontologo.isEmpty()) {
             throw new ResourceNotFoundException("Odontologo no encontrado");

@@ -66,10 +66,10 @@ public class TurnoService implements ITurnoService {
     }
 
     @Override
-    public TurnoResponseDto create(TurnoRequestDto turnoRequestDto){
+    public TurnoResponseDto guardarTurno(TurnoRequestDto turnoRequestDto){
         try{
-            Optional<Paciente> paciente = pacienteService.getPacienteById(turnoRequestDto.getPaciente_id());
-            Optional<Odontologo> odontologo = odontologoService.getOdontologoById(turnoRequestDto.getOdontologo_id());
+            Optional<Paciente> paciente = pacienteService.obtenerPaciente(turnoRequestDto.getPaciente_id());
+            Optional<Odontologo> odontologo = odontologoService.obtenerOdontologo(turnoRequestDto.getOdontologo_id());
             Turno turno = new Turno();
             turno.setPaciente(paciente.get());
             turno.setOdontologo(odontologo.get());
@@ -83,7 +83,7 @@ public class TurnoService implements ITurnoService {
     }
 
     @Override
-    public Optional<TurnoResponseDto> findOne(Integer id) {
+    public Optional<TurnoResponseDto> buscarPorId(Integer id) {
         Optional<Turno> turno = turnoRepository.findById(id);
         if(turno.isEmpty()){
             throw new ResourceNotFoundException("El turno no fue encontrado");
@@ -94,7 +94,7 @@ public class TurnoService implements ITurnoService {
     }
 
     @Override
-    public List<TurnoResponseDto> findAll() {
+    public List<TurnoResponseDto> buscarTodos() {
         List<Turno> turnosDesdeBD = turnoRepository.findAll();
         List<TurnoResponseDto> turnosRespuesta = new ArrayList<>();
         for(Turno t: turnosDesdeBD){
@@ -106,14 +106,14 @@ public class TurnoService implements ITurnoService {
     }
 
     @Override
-    public void update(TurnoModifyDto turnoModifyDto) {
+    public void modificarTurno(TurnoModifyDto turnoModifyDto) {
         try{
             Optional<Turno> turno = turnoRepository.findById(turnoModifyDto.getId());
             if(turno.isEmpty()){
                 throw new ResourceNotFoundException("El turno no fue encontrado");
             }
-            Optional<Paciente> paciente = pacienteService.getPacienteById(turnoModifyDto.getPaciente_id());
-            Optional<Odontologo> odontologo = odontologoService.getOdontologoById(turnoModifyDto.getOdontologo_id());
+            Optional<Paciente> paciente = pacienteService.obtenerPaciente(turnoModifyDto.getPaciente_id());
+            Optional<Odontologo> odontologo = odontologoService.obtenerOdontologo(turnoModifyDto.getOdontologo_id());
             Turno turnoUpdate = new Turno(
                 turnoModifyDto.getId(), paciente.get(), odontologo.get(), LocalDate.parse(turnoModifyDto.getFecha())
             );
@@ -124,7 +124,7 @@ public class TurnoService implements ITurnoService {
     }
 
     @Override
-    public void delete(Integer id){
+    public void eliminarTurno(Integer id){
         Optional<Turno> turno = turnoRepository.findById(id);
         if(turno.isEmpty()){
             throw new ResourceNotFoundException("El turno no fue encontrado");
