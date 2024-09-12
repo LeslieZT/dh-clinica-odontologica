@@ -121,7 +121,7 @@ public class PacienteService implements IPacienteService {
 
     @Override
     public List<PacienteResponseDto> buscarPorUnaParteApellido(String parte) {
-        
+
         return List.of();
     }
 
