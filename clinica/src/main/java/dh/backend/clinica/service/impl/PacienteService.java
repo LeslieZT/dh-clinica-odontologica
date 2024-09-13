@@ -3,7 +3,6 @@ package dh.backend.clinica.service.impl;
 import dh.backend.clinica.dto.request.paciente.PacienteCreateRequestDto;
 import dh.backend.clinica.dto.request.paciente.PacienteUpdateRequestDto;
 import dh.backend.clinica.dto.response.PacienteResponseDto;
-import dh.backend.clinica.entity.Odontologo;
 import dh.backend.clinica.entity.Paciente;
 import dh.backend.clinica.exception.ResourceNotFoundException;
 import dh.backend.clinica.repository.IPacienteRepository;
@@ -108,32 +107,24 @@ public class PacienteService implements IPacienteService {
     }
 
 
-//    @Override
-//    public List<Paciente> buscarPorApellidoyNombre(String apellido, String nombre) {
-//        return pacienteRepository.findByApellidoAndNombre(apellido, nombre);
-//    }
-
-
     @Override
-    public List<PacienteResponseDto> buscarPorApellidoyNombre(String apellido, String nombre) {
-        return List.of();
-    }
-
-    @Override
-    public List<PacienteResponseDto> buscarPorUnaParteApellido(String parte) {
-
-        return List.of();
+    public List<Paciente> buscarPorApellidoyNombre(String apellido, String nombre) {
+        return pacienteRepository.findByApellidoAndNombre(apellido,nombre);
     }
 
 
+    @Override
+    public List<Paciente> buscarPorUnaParteApellido(String parte) {
 
+        return pacienteRepository.buscarPorParteApellido(parte);
+    }
 
 
     @Override
     public Optional<Paciente> obtenerPaciente(Integer id) {
         Optional<Paciente> paciente = pacienteRepository.findById(id);
         if (paciente.isEmpty()){
-            throw new ResourceNotFoundException("Paciente no encontrado")
+            throw new ResourceNotFoundException("Paciente no encontrado");
         }
         return paciente;
     }
@@ -145,51 +136,5 @@ public class PacienteService implements IPacienteService {
     }
 
 
-//    @Override
-//    public PacienteResponseDto guardarPaciente(PacienteCreateRequestDto pacienteCreateRequestDto) {
-//        Paciente paciente = convertirEnPaciente(pacienteCreateRequestDto);
-//        Paciente newPacienete = pacienteRepository
-//        return pacienteRepository.save(paciente);
-//    }
-//
-//    @Override
-//    public Optional<Paciente> buscarPorId(Integer id) {
-//        return pacienteRepository.findById(id);
-//    }
-//
-//    @Override
-//    public List<Paciente> buscarTodos() {
-//        return pacienteRepository.findAll();
-//    }
-//
-//    @Override
-//    public void modificarPaciente(Paciente paciente) {
-//        pacienteRepository.save(paciente);
-//    }
-//
-//    @Override
-//    public void eliminarPaciente(Integer id) {
-//        Optional<Paciente> pacienteEncontrado = buscarPorId(id);
-//        if(pacienteEncontrado.isPresent()){
-//            pacienteRepository.deleteById(id);
-//        } else {
-//            throw new ResourceNotFoundException("Paciente no encontrado");
-//        }
-//    }
-//
 
-//
-//    @Override
-//    public List<Paciente> buscarPorUnaParteApellido(String parte){
-//        return pacienteRepository.buscarPorParteApellido(parte);
-//    }
-//
-//    @Override
-//    public Optional<Paciente> obtenerPaciente (Integer id) {
-//        Optional<Paciente> paciente = pacienteRepository.findById(id);
-//        if(paciente.isEmpty()) {
-//            throw new ResourceNotFoundException("Paciente no encontrado");
-//        }
-//        return paciente;
-//    }
 }

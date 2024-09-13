@@ -19,11 +19,11 @@ public interface IPacienteService {
 
     void eliminarPaciente(Integer id);
 
-    List<PacienteResponseDto> buscarPorApellidoyNombre(String apellido, String nombre);
+    List<Paciente> buscarPorApellidoyNombre(String apellido, String nombre);
 
-    List<PacienteResponseDto> buscarPorUnaParteApellido(String parte);
+    List<Paciente> buscarPorUnaParteApellido(String parte);
 
-    Optional<PacienteResponseDto> obtenerPaciente(Integer id);
+    Optional<Paciente> obtenerPaciente(Integer id);
 
     PacienteResponseDto convertirPacienteEnResponse(Paciente paciente);
 }
