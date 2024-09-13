@@ -2,10 +2,9 @@ package dh.backend.clinica.controller;
 
 import dh.backend.clinica.dto.request.paciente.PacienteCreateRequestDto;
 import dh.backend.clinica.dto.request.paciente.PacienteUpdateRequestDto;
-import dh.backend.clinica.dto.response.PacienteResponseDto;
+import dh.backend.clinica.dto.response.paciente.PacienteResponseDto;
 import dh.backend.clinica.entity.Paciente;
 import dh.backend.clinica.service.IPacienteService;
-import dh.backend.clinica.service.impl.PacienteService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

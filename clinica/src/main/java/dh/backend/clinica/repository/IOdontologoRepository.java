@@ -15,4 +15,9 @@ public interface IOdontologoRepository extends JpaRepository<Odontologo, Integer
 
     @Query("Select o from Odontologo o where LOWER(o.nombre) LIKE LOWER(CONCAT('%',:parteNombre,'%'))")
     List<Odontologo> buscarPorParteNombre(String parteNombre);
+
+
+    @Query("SELECT o FROM Odontologo o WHERE o.turnoSet IS EMPTY")
+    List<Odontologo> buscarOdontologosSinTurnos();
+
 }

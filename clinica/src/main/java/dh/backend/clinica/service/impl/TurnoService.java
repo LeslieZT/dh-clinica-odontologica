@@ -3,8 +3,8 @@ package dh.backend.clinica.service.impl;
 
 import dh.backend.clinica.dto.request.turno.TurnoModifyDto;
 import dh.backend.clinica.dto.request.turno.TurnoRequestDto;
-import dh.backend.clinica.dto.response.PacienteResponseDto;
-import dh.backend.clinica.dto.response.TurnoResponseDto;
+import dh.backend.clinica.dto.response.paciente.PacienteResponseDto;
+import dh.backend.clinica.dto.response.turno.TurnoResponseDto;
 import dh.backend.clinica.dto.response.odontologo.OdontologoResponseDto;
 import dh.backend.clinica.entity.Odontologo;
 import dh.backend.clinica.entity.Paciente;
@@ -53,10 +53,8 @@ public class TurnoService implements ITurnoService {
                 turnoDesdeBD.getOdontologo().getId(), turnoDesdeBD.getOdontologo().getNroMatricula(),
                 turnoDesdeBD.getOdontologo().getApellido(), turnoDesdeBD.getOdontologo().getNombre()
         );
-        PacienteResponseDto pacienteResponseDto = new PacienteResponseDto(
-                turnoDesdeBD.getPaciente().getId(), turnoDesdeBD.getPaciente().getApellido(),
-                turnoDesdeBD.getPaciente().getNombre(), turnoDesdeBD.getPaciente().getDni()
-        );
+        PacienteResponseDto pacienteResponseDto = modelMapper.map(turnoDesdeBD.getPaciente(), PacienteResponseDto.class);
+
         TurnoResponseDto turnoResponseDto = new TurnoResponseDto(
                 turnoDesdeBD.getId(),
                 pacienteResponseDto, odontologoResponseDto,

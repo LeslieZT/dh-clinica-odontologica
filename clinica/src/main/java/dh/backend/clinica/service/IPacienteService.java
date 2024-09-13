@@ -2,7 +2,7 @@ package dh.backend.clinica.service;
 
 import dh.backend.clinica.dto.request.paciente.PacienteCreateRequestDto;
 import dh.backend.clinica.dto.request.paciente.PacienteUpdateRequestDto;
-import dh.backend.clinica.dto.response.PacienteResponseDto;
+import dh.backend.clinica.dto.response.paciente.PacienteResponseDto;
 import dh.backend.clinica.entity.Paciente;
 
 import java.util.List;

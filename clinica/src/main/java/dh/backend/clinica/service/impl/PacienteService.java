@@ -2,7 +2,7 @@ package dh.backend.clinica.service.impl;
 
 import dh.backend.clinica.dto.request.paciente.PacienteCreateRequestDto;
 import dh.backend.clinica.dto.request.paciente.PacienteUpdateRequestDto;
-import dh.backend.clinica.dto.response.PacienteResponseDto;
+import dh.backend.clinica.dto.response.paciente.PacienteResponseDto;
 import dh.backend.clinica.entity.Paciente;
 import dh.backend.clinica.exception.ResourceNotFoundException;
 import dh.backend.clinica.repository.IPacienteRepository;
@@ -40,9 +40,6 @@ public class PacienteService implements IPacienteService {
         return paciente;
     }
 
-
-
-
     @Override
     public PacienteResponseDto guardarPaciente(PacienteCreateRequestDto pacienteCreateRequestDto) {
         Paciente paciente = convertirEnPaciente(pacienteCreateRequestDto);
@@ -50,9 +47,6 @@ public class PacienteService implements IPacienteService {
         PacienteResponseDto pacienteResponseDto = convertirPacienteEnResponse(newPaciente);
         return pacienteResponseDto;
     }
-
-
-
 
     @Override
     public Optional<PacienteResponseDto> buscarPorId(Integer id) {
@@ -64,9 +58,6 @@ public class PacienteService implements IPacienteService {
             logger.info("Paciente Encontrado " + pacienteResponseDto);
         return Optional.of(pacienteResponseDto);
     }
-
-
-
 
     @Override
     public List<PacienteResponseDto> buscarTodos() {

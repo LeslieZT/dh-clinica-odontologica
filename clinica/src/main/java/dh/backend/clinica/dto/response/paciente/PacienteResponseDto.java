@@ -1,5 +1,6 @@
-package dh.backend.clinica.dto.response;
+package dh.backend.clinica.dto.response.paciente;
 
+import dh.backend.clinica.dto.response.domicilio.DomicilioResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,4 +15,5 @@ public class PacienteResponseDto {
     private String apellido;
     private String nombre;
     private String dni;
+    private DomicilioResponseDto domicilio;
 }

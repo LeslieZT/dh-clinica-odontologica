@@ -1,8 +1,7 @@
 package dh.backend.clinica.service;
 import dh.backend.clinica.dto.request.turno.TurnoModifyDto;
 import dh.backend.clinica.dto.request.turno.TurnoRequestDto;
-import dh.backend.clinica.dto.response.TurnoResponseDto;
-import dh.backend.clinica.entity.Turno;
+import dh.backend.clinica.dto.response.turno.TurnoResponseDto;
 
 import java.util.List;
 import java.util.Optional;

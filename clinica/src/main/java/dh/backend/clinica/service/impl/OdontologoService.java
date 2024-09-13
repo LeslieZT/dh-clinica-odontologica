@@ -133,4 +133,17 @@ public class OdontologoService implements IOdontologoService {
         return odontologo;
     }
 
+    @Override
+    public List<OdontologoResponseDto> buscarOdontologosSinTurnos() {
+        List<Odontologo> odontologosDesdeBD = odontologoRepository.buscarOdontologosSinTurnos() ;
+        List<OdontologoResponseDto>  odontologosResponse = new ArrayList<>();
+        for(Odontologo t: odontologosDesdeBD){
+            OdontologoResponseDto odontologoResponseDto = convertirOdontologoEnResponse(t);
+            logger.info("odontologo"+ odontologoResponseDto);
+            odontologosResponse.add(odontologoResponseDto);
+        }
+        return odontologosResponse;
+    }
+
+
 }

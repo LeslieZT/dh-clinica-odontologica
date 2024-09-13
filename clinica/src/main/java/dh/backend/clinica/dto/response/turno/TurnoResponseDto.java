@@ -1,6 +1,7 @@
-package dh.backend.clinica.dto.response;
+package dh.backend.clinica.dto.response.turno;
 
 import dh.backend.clinica.dto.response.odontologo.OdontologoResponseDto;
+import dh.backend.clinica.dto.response.paciente.PacienteResponseDto;
 import dh.backend.clinica.utils.GsonProvider;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

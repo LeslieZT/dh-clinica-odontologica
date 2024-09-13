@@ -28,4 +28,6 @@ public interface IOdontologoService {
 
     OdontologoResponseDto convertirOdontologoEnResponse(Odontologo odontologo);
 
+    List<OdontologoResponseDto> buscarOdontologosSinTurnos();
+
 }

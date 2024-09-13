@@ -3,7 +3,7 @@ package dh.backend.clinica.controller;
 
 import dh.backend.clinica.dto.request.turno.TurnoModifyDto;
 import dh.backend.clinica.dto.request.turno.TurnoRequestDto;
-import dh.backend.clinica.dto.response.TurnoResponseDto;
+import dh.backend.clinica.dto.response.turno.TurnoResponseDto;
 import dh.backend.clinica.service.ITurnoService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;

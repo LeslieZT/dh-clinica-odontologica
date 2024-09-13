@@ -68,4 +68,9 @@ public class OdontologoController {
     public ResponseEntity<List<OdontologoResponseDto>> buscarParteNombre(@PathVariable String parte){
         return ResponseEntity.ok(odontologoService.buscarPorNombre(parte));
     }
+
+    @GetMapping("/buscarOdontologosSinTurnos")
+    public ResponseEntity<List<OdontologoResponseDto>> buscarOdontologosSinTurnos(){
+        return ResponseEntity.ok(odontologoService.buscarOdontologosSinTurnos());
+    }
 }

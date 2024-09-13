@@ -1,7 +1,6 @@
 package dh.backend.clinica.controller;
 
-import dh.backend.clinica.dto.response.PacienteResponseDto;
-import dh.backend.clinica.entity.Paciente;
+import dh.backend.clinica.dto.response.paciente.PacienteResponseDto;
 
 import dh.backend.clinica.service.IPacienteService;
 import org.springframework.stereotype.Controller;
