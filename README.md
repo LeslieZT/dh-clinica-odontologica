@@ -1,4 +1,4 @@
-## CLINICA ODONTOLOGICA 
+## CLINICA ODONTOLÓGICA 
 
 Este es un proyecto para la gestión de una clínica odontológica. La aplicación está desarrollada utilizando Java SDK 21.
 

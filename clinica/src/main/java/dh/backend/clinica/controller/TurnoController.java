@@ -51,8 +51,8 @@ public class TurnoController {
     }
 
     @GetMapping("/buscarTurnoApellido/{apellido}")
-    public ResponseEntity<TurnoResponseDto> buscarTurnoPorApellido(@PathVariable String apellido){
-        Optional<TurnoResponseDto> turno = turnoService.buscarTurnosPorPaciente(apellido);
-        return ResponseEntity.ok(turno.get());
+    public ResponseEntity<List<TurnoResponseDto>> buscarTurnoPorApellido(@PathVariable String apellido){
+        List<TurnoResponseDto> turnos = turnoService.buscarTurnosPorPaciente(apellido);
+        return ResponseEntity.ok(turnos);
     }
 }

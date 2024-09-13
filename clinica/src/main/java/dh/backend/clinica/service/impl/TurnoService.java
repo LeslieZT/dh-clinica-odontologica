@@ -131,13 +131,15 @@ public class TurnoService implements ITurnoService {
     }
 
     @Override
-    public Optional<TurnoResponseDto> buscarTurnosPorPaciente(String pacienteApellido) {
-        Optional<Turno> turno = turnoRepository.buscarPorApellidoPaciente(pacienteApellido);
-        TurnoResponseDto turnoParaResponder = null;
-        if(turno.isPresent()) {
-            turnoParaResponder = convertirTurnoEnResponse(turno.get());
+    public List<TurnoResponseDto> buscarTurnosPorPaciente(String pacienteApellido) {
+        List<Turno> turnosDesdeBD = turnoRepository.buscarPorApellidoPaciente(pacienteApellido);
+        List<TurnoResponseDto> turnosRespuesta = new ArrayList<>();
+        for (Turno t : turnosDesdeBD) {
+            TurnoResponseDto turnoRespuesta = convertirTurnoEnResponse(t);
+            logger.info("turno dto" + turnoRespuesta);
+            turnosRespuesta.add(turnoRespuesta);
         }
-        return Optional.ofNullable(turnoParaResponder);
+        return turnosRespuesta;
     }
 
 }

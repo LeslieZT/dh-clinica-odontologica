@@ -127,8 +127,6 @@ public class PacienteService implements IPacienteService {
     @Override
     public PacienteResponseDto convertirPacienteEnResponse(Paciente paciente) {
         PacienteResponseDto pacienteResponseDto = modelMapper.map(paciente, PacienteResponseDto.class);
-        // pacienteResponseDto.setFechaIngreso(paciente.getFechaIngreso().toString());
-        logger.info("fecha" + paciente.getFechaIngreso());
         return pacienteResponseDto;
     }
 
