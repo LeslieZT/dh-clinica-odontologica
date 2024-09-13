@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0d0d7a29-8ef1-46bf-8dfa-7b167dce155c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/clinica/src/main/java/dh/backend/clinica/controller/OdontologoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/clinica/src/main/java/dh/backend/clinica/controller/OdontologoController.java" afterDir="false" />
-    </list>
+    <list default="true" id="0d0d7a29-8ef1-46bf-8dfa-7b167dce155c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +10,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0
+}]]></component>
   <component name="ProjectId" id="2ldOSDS661GRWD4wdXALE6aKQUf" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -21,6 +22,9 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "mm",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/_/OneDrive - UNIVERSIDAD NACIONAL DE INGENIERIA/_dev/_/01_DH/B5/b5_Back/_EF/dh-clinica-odontologica",
     "settings.editor.selected.configurable": "preferences.keymap"
   }
 }]]></component>

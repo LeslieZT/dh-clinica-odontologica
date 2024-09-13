@@ -1,5 +1,6 @@
 package dh.backend.clinica.controller;
 
+import dh.backend.clinica.dto.response.PacienteResponseDto;
 import dh.backend.clinica.entity.Paciente;
 
 import dh.backend.clinica.service.IPacienteService;
@@ -20,7 +21,7 @@ public class VistaController {
     //localhost:8080/index?id=1&nombre=paciente1
     @GetMapping("/index")
     public String buscarPaciente(Model model, @RequestParam Integer id){
-        Paciente paciente = pacienteService.buscarPorId(id).get();
+        PacienteResponseDto paciente = pacienteService.buscarPorId(id).get();
 
         model.addAttribute("nombre", paciente.getNombre());
         model.addAttribute("apellido", paciente.getApellido());
