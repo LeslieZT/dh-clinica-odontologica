@@ -14,7 +14,7 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-    <title>Document</title>
+    <title>Agregar Odontologo</title>
   </head>
   <body>
     <nav
@@ -22,7 +22,7 @@
       data-bs-theme="dark"
     >
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Clinica Odontologica</a>
+        <a class="navbar-brand" href="index.html">Clinica Odontologica</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -36,28 +36,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
-
-
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Gestión de Pacientes
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="listar_pacientes.html">Listar Pacientes</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="agregar_pacientes.html">Agregar Pacientes</a>
-                </li>
-              </ul>
-            </li>
-
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -70,17 +48,48 @@
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <a class="dropdown-item" href="listar_odontologos.html">Listar Odontologos</a>
+                  <a class="dropdown-item" href="listar_odontologos.html"
+                    >Listar Odontologos</a
+                  >
                 </li>
                 <li>
-                  <a class="dropdown-item" href="agregar_odontologos.html">Agregar Odontologos</a>
+                  <a class="dropdown-item" href="agregar_odontologos.html"
+                    >Agregar Odontologos</a
+                  >
                 </li>
               </ul>
             </li>
-
           </ul>
         </div>
       </div>
     </nav>
-  </body>>
+    <div class="container">
+      <h1 class="mt-5">Agregar Odontologos</h1>
+      <form id="agregarForm">
+        <div class="mb-3">
+          <label for="numeroMatricula" class="form-label"
+            >numeroMatricula</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="numeroMatricula"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="apellido" class="form-label">Apellido</label>
+          <input type="text" class="form-control" id="apellido" required />
+        </div>
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="nombre" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Agregar</button>
+      </form>
+    </div>
+
+    <script src="js/agregarOdontologos.js"></script>
+  </body>
 </html>

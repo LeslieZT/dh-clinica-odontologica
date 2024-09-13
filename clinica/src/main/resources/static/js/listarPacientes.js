@@ -136,5 +136,5 @@ deletePaciente = function (id) {
   }
 };
 
-// Llamar a la función para obtener y mostrar los odontólogos
+// Llamar a la función para obtener y mostrar los pacientes
 fetchPacientes();
