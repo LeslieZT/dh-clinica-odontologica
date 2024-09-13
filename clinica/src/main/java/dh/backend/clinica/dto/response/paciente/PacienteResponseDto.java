@@ -16,4 +16,6 @@ public class PacienteResponseDto {
     private String nombre;
     private String dni;
     private DomicilioResponseDto domicilio;
+    private String fechaIngreso;
+
 }

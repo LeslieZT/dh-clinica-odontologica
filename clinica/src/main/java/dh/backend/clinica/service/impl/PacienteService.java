@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -32,11 +33,14 @@ public class PacienteService implements IPacienteService {
 
     private Paciente convertirEnPaciente(PacienteCreateRequestDto pacienteCreateRequestDto){
         Paciente paciente = modelMapper.map(pacienteCreateRequestDto, Paciente.class);
+        paciente.setFechaIngreso(LocalDate.parse(pacienteCreateRequestDto.getFechaIngreso()));
         return paciente;
     }
 
     private Paciente convertirEnPaciente(PacienteUpdateRequestDto pacienteUpdateRequestDto){
         Paciente paciente = modelMapper.map(pacienteUpdateRequestDto, Paciente.class);
+        paciente.setFechaIngreso(LocalDate.parse(pacienteUpdateRequestDto.getFechaIngreso()));
+
         return paciente;
     }
 
@@ -123,6 +127,8 @@ public class PacienteService implements IPacienteService {
     @Override
     public PacienteResponseDto convertirPacienteEnResponse(Paciente paciente) {
         PacienteResponseDto pacienteResponseDto = modelMapper.map(paciente, PacienteResponseDto.class);
+        // pacienteResponseDto.setFechaIngreso(paciente.getFechaIngreso().toString());
+        logger.info("fecha" + paciente.getFechaIngreso());
         return pacienteResponseDto;
     }
 
